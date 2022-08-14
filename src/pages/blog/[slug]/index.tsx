@@ -94,7 +94,7 @@ export const getStaticPaths: GetStaticPaths<ParsedUrlQuery> = async () => {
   const filenames = await fs.readdir(markdownPagesDirectory);
   const markdownPages = filenames
     .reverse()
-    .filter((_, index) => index < 25)
+    .filter((_, index) => index < 10)
     .map((filename) => ({
       params: {
         slug: filename.replace(".md", ""),

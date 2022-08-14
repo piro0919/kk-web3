@@ -45,8 +45,8 @@ const handler = nc<NextApiRequest, NextApiResponse<ExtendedGetResponse>>({
       .reverse()
       .filter(
         (_, index) =>
-          index >= 25 * parseInt(page, 10) &&
-          index < 25 * (parseInt(page, 10) + 1)
+          index >= 10 * parseInt(page, 10) &&
+          index < 10 * (parseInt(page, 10) + 1)
       )
       .map(async (filename) => {
         const filePath = path.join(markdownPagesDirectory, filename);

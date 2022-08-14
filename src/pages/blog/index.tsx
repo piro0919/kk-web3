@@ -38,7 +38,7 @@ export const getStaticProps: GetStaticProps<BlogProps> = async () => {
   const filenames = await fs.readdir(markdownPagesDirectory);
   const markdownPages = filenames
     .reverse()
-    .filter((_, index) => index < 25)
+    .filter((_, index) => index < 10)
     .map(async (filename) => {
       const filePath = path.join(markdownPagesDirectory, filename);
       const fileContents = await fs.readFile(filePath, "utf8");
