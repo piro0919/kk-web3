@@ -1,0 +1,14 @@
+@use "./mq" as mq;
+
+@mixin narrow-content {
+  max-width: 960px;
+  width: 100%;
+  @include mq.mq($until: tablet) {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+  @include mq.mq($from: tablet) {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+}

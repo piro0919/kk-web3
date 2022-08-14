@@ -1,0 +1,42 @@
+@use "styles/mixin" as mixin;
+
+.header {
+  /* stylelint-disable-next-line color-function-notation */
+  background: rgba(var(--color-black-text), 0.95);
+  display: flex;
+  justify-content: center;
+  @include mq.mq($until: desktop) {
+    padding: 24px 0;
+  }
+  @include mq.mq($from: desktop) {
+    padding: 36px 0;
+  }
+}
+
+.nav {
+  @include mixin.narrow-content;
+
+  display: flex;
+  font-family: Montserrat, sans-serif;
+  justify-content: center;
+}
+
+.list {
+  align-items: center;
+  display: flex;
+  gap: 84px;
+}
+
+.active {
+  position: relative;
+}
+
+.active::after {
+  background: var(--color-brand-red);
+  bottom: -4px;
+  content: "";
+  display: block;
+  height: 1px;
+  position: absolute;
+  width: 100%;
+}

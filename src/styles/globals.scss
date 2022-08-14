@@ -1,0 +1,48 @@
+:root {
+  // Brand Colors
+  --color-brand-blue: #234794;
+  --color-brand-red: #b33e5c;
+
+  // Neutral Colors
+  --color-black: #202124;
+  --color-black-text: 31, 32, 35;
+  --color-gray: #808080;
+  --color-light-white: #fff;
+  --color-white: #bdc1c6;
+}
+
+html {
+  @include mq.mq($until: tablet) {
+    font-size: 56.25%;
+  }
+  @include mq.mq($from: tablet) {
+    font-size: 62.5%;
+  }
+}
+
+body {
+  background: var(--color-black);
+  color: var(--color-white);
+  font-family: jkg, sans-serif;
+  font-size: 1.4rem;
+  letter-spacing: 0.5px;
+  line-height: 1.5;
+  overflow: hidden auto;
+}
+
+* {
+  outline: none;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+ul {
+  list-style: none;
+}
+
+.grecaptcha-badge {
+  bottom: 84px !important;
+}

@@ -1,0 +1,65 @@
+@use "styles/mixin" as mixin;
+
+.wrapper {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  padding: 24px 0;
+}
+
+.inner {
+  @include mixin.narrow-content;
+
+  max-width: 600px;
+}
+
+.formInner {
+  display: grid;
+  gap: 24px;
+}
+
+.fieldsWrapper {
+  display: grid;
+  gap: 24px;
+}
+
+.field {
+  display: grid;
+  gap: 4px;
+}
+
+.label {
+  display: flex;
+  font-size: 1rem;
+  gap: 4px;
+}
+
+.input,
+.textarea {
+  background: var(--color-light-white);
+  color: var(--color-black);
+  font-family: arial, sans-serif;
+  padding: 4px 6px;
+}
+
+.errorMessage {
+  color: var(--color-brand-red);
+  font-family: arial, sans-serif;
+  font-size: 1.2rem;
+}
+
+.buttonWrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.button {
+  background: var(--color-brand-blue);
+  color: var(--color-light-white);
+  font-family: arial, sans-serif;
+  padding: 8px 20px;
+}
+
+.button:disabled {
+  opacity: 0.5;
+}

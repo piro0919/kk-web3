@@ -1,0 +1,39 @@
+@use "styles/mixin" as mixin;
+
+.wrapper {
+  display: flex;
+  justify-content: center;
+  padding: 24px 0;
+}
+
+.inner {
+  @include mixin.narrow-content;
+
+  @include mq.mq($until: tablet) {
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
+
+.listBlock {
+  display: grid;
+  gap: 24px;
+}
+
+.hr {
+  background: var(--color-gray);
+  border: 0;
+  height: 1px;
+  width: 100%;
+}
+
+.anchor {
+  @include mq.mq($until: tablet) {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+}
+
+.title {
+  font-size: 2.4rem;
+}

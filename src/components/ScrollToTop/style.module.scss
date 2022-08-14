@@ -1,0 +1,16 @@
+.scrollToTop {
+  align-items: center;
+  background: #234794 !important;
+  box-shadow: none !important;
+  display: flex;
+  justify-content: center;
+  opacity: 0.75;
+  @include mq.mq($until: tablet) {
+    bottom: 64px !important;
+    right: 12px !important;
+  }
+  @include mq.mq($from: tablet) {
+    bottom: 64px !important;
+    right: 24px !important;
+  }
+}

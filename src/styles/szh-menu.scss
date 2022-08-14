@@ -1,0 +1,43 @@
+/* stylelint-disable block-no-empty */
+/* stylelint-disable max-nesting-depth */
+@keyframes szh-menu-show {
+  from {
+    opacity: 0;
+  }
+}
+
+@keyframes szh-menu-hide {
+  to {
+    opacity: 0;
+  }
+}
+
+.szh-menu-button {
+  align-items: center;
+  color: inherit;
+  display: flex;
+  height: 100%;
+  justify-content: center;
+  width: 100%;
+}
+
+.szh-menu {
+  background: var(--color-brand-blue);
+  border-radius: 8px;
+  color: var(--color-light-white);
+  padding: 12px;
+
+  .szh-menu__arrow {
+    background: var(--color-brand-blue);
+  }
+
+  &__item {
+    &:not(:last-child) {
+      padding: 0 0 8px;
+    }
+
+    &--hover {
+      background: inherit;
+    }
+  }
+}

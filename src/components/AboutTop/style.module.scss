@@ -1,0 +1,33 @@
+@use "styles/mixin" as mixin;
+
+.wrapper {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  padding: 24px 0;
+}
+
+.inner {
+  @include mixin.narrow-content;
+
+  display: flex;
+  justify-content: center;
+}
+
+.list {
+  display: grid;
+  gap: 24px;
+}
+
+.term {
+  font-size: 1rem;
+}
+
+.anchor {
+  color: var(--color-brand-red);
+}
+
+.linkList {
+  display: flex;
+  gap: 12px;
+}

@@ -1,0 +1,30 @@
+@use "styles/mixin" as mixin;
+
+.footer {
+  display: flex;
+  justify-content: center;
+  @include mq.mq($until: desktop) {
+    padding: 12px 0;
+  }
+  @include mq.mq($from: desktop) {
+    padding: 24px 0;
+  }
+}
+
+.inner {
+  @include mixin.narrow-content;
+
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+}
+
+.copyrightWrapper {
+  font-family: arial, sans-serif;
+  font-size: 1.2rem;
+}
+
+.list {
+  display: flex;
+  gap: 12px;
+}
