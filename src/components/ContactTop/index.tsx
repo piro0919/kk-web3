@@ -5,8 +5,8 @@ import TextareaAutosize from "react-textarea-autosize";
 import styles from "./style.module.scss";
 
 type FieldValues = {
+  email: string;
   from: string;
-  replyTo: string;
   subject: string;
   text: string;
 };
@@ -26,8 +26,8 @@ function ContactTop(
     setFocus,
   } = useForm<FieldValues>({
     defaultValues: {
+      email: "",
       from: "",
-      replyTo: "",
       subject: "",
       text: "",
     },
@@ -67,21 +67,19 @@ function ContactTop(
                 ) : null}
               </div>
               <div className={styles.field}>
-                <label className={styles.label} htmlFor="replyTo">
+                <label className={styles.label} htmlFor="email">
                   Email<abbr>*</abbr>
                 </label>
                 <input
-                  {...register("replyTo", {
+                  {...register("email", {
                     required: "メールアドレスを入力してください",
                   })}
                   className={styles.input}
-                  id="replyTo"
+                  id="email"
                   type="email"
                 />
-                {errors?.replyTo?.message ? (
-                  <p className={styles.errorMessage}>
-                    {errors.replyTo.message}
-                  </p>
+                {errors?.email?.message ? (
+                  <p className={styles.errorMessage}>{errors.email.message}</p>
                 ) : null}
               </div>
               <div className={styles.field}>

@@ -10,7 +10,7 @@ import toast from "react-hot-toast";
 function Contact(): JSX.Element {
   const recaptchaRef = useRef<ReCAPTCHA>(null);
   const handleSubmit = useCallback<ContactTopProps["onSubmit"]>(
-    async (values) => {
+    async ({ email, from, subject, text }) => {
       if (!recaptchaRef.current) {
         return;
       }
@@ -31,7 +31,11 @@ function Contact(): JSX.Element {
         PostEmailData,
         AxiosResponse<PostEmailData>,
         PostEmailBody
-      >("/api/email", { ...values });
+      >("/api/email", {
+        text,
+        from: `${from} <${email}>`,
+        subject: `【kk-web】${subject}`,
+      });
 
       toast.promise(myPromise, {
         error: "送信に失敗しました…",
