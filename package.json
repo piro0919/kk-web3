@@ -2,8 +2,11 @@
   "dependencies": {
     "@szhsin/react-menu": "3.1.2",
     "axios": "0.27.2",
+    "babel-plugin-add-react-displayname": "0.0.5",
     "dayjs": "1.11.5",
     "github-markdown-css": "5.1.0",
+    "logrocket": "3.0.1",
+    "logrocket-react": "5.0.1",
     "markdown-to-text": "0.1.1",
     "next": "12.2.5",
     "next-connect": "0.13.0",
@@ -37,6 +40,7 @@
   "devDependencies": {
     "@commitlint/cli": "17.0.3",
     "@commitlint/config-conventional": "17.0.3",
+    "@types/logrocket-react": "3.0.0",
     "@types/node": "18.7.3",
     "@types/nodemailer": "6.4.5",
     "@types/react": "18.0.17",
