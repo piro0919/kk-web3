@@ -94,18 +94,12 @@ export const getStaticPaths: GetStaticPaths<ParsedUrlQuery> = async () => {
   const filenames = await fs.readdir(markdownPagesDirectory);
   const markdownPages = filenames
     .reverse()
-    .filter((_, index) => index < 100)
-    .map(async (filename) => {
-      const filePath = path.join(markdownPagesDirectory, filename);
-      const fileContents = await fs.readFile(filePath, "utf8");
-      const slug = fileContents.match(/slug: "(.*?)"/);
-
-      return {
-        params: {
-          slug: slug ? slug[1] : "",
-        },
-      };
-    });
+    .filter((_, index) => index < 25)
+    .map((filename) => ({
+      params: {
+        slug: filename.replace(".md", ""),
+      },
+    }));
 
   return {
     fallback: "blocking",
