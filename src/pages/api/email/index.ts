@@ -6,7 +6,7 @@ import { Options } from "nodemailer/lib/mailer";
 import { SentMessageInfo } from "nodemailer/lib/smtp-transport";
 import { parseCookies } from "nookies";
 
-export type PostEmailBody = Pick<Options, "from" | "subject" | "text">;
+export type PostEmailBody = Pick<Options, "replyTo" | "subject" | "text">;
 
 export type PostEmailData = SentMessageInfo;
 
@@ -52,9 +52,9 @@ const handler = nc<NextApiRequest, NextApiResponse<ExtendedPostResponse>>({
     secure: true,
     service: "gmail",
   });
-  const { from, subject, text } = body as PostEmailBody;
+  const { replyTo, subject, text } = body as PostEmailBody;
   const info = await transporter.sendMail({
-    from,
+    replyTo,
     subject,
     text,
     to: process.env.NODEMAILER_AUTH_USER,

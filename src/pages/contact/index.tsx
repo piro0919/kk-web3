@@ -33,7 +33,7 @@ function Contact(): JSX.Element {
         PostEmailBody
       >("/api/email", {
         text,
-        from: `${from} <${email}>`,
+        replyTo: `${from} <${email}>`,
         subject: `【kk-web】${subject}`,
       });
 
