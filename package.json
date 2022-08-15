@@ -3,7 +3,6 @@
     "@szhsin/react-menu": "3.1.2",
     "axios": "0.27.2",
     "babel-plugin-add-react-displayname": "0.0.5",
-    "dayjs": "1.11.5",
     "github-markdown-css": "5.1.0",
     "logrocket": "3.0.1",
     "logrocket-react": "5.0.1",
