@@ -84,7 +84,7 @@
     "dev": "next dev",
     "lint": "run-p lint:es lint:style",
     "lint-staged": "npx lint-staged",
-    "lint:es": "eslint packages --ext .ts,.tsx --fix",
+    "lint:es": "eslint src --ext .ts,.tsx --fix",
     "lint:next": "next lint --fix",
     "lint:style": "stylelint --fix '**/*.scss'",
     "postbuild": "next-sitemap",
