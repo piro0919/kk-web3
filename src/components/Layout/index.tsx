@@ -25,11 +25,11 @@ function Layout({ children }: LayoutProps): JSX.Element {
               direction="bottom"
               menuButton={
                 <MenuButton>
-                  <a className={styles.anchor}>
+                  <span className={styles.anchor}>
                     <span className={isActive ? styles.active : ""}>
                       {title}
                     </span>
-                  </a>
+                  </span>
                 </MenuButton>
               }
               transition={true}

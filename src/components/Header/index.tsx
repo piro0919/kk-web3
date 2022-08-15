@@ -17,7 +17,7 @@ function Header(): JSX.Element {
               direction="top"
               menuButton={
                 <MenuButton>
-                  <a className={isActive ? styles.active : ""}>{title}</a>
+                  <span className={isActive ? styles.active : ""}>{title}</span>
                 </MenuButton>
               }
               transition={true}
