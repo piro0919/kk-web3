@@ -6,6 +6,7 @@ const nextConfig = {
     ignoreDuringBuilds: true,
   },
   experimental: {
+    forceSwcTransforms: true,
     images: {
       unoptimized: true,
     },

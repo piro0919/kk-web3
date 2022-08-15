@@ -32,8 +32,12 @@
   }
 
   &__item {
+    a {
+      display: block;
+    }
+
     &:not(:last-child) {
-      padding: 0 0 8px;
+      margin: 0 0 8px;
     }
 
     &--hover {
