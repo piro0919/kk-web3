@@ -45,15 +45,15 @@ const handler = nc<NextApiRequest, NextApiResponse<ExtendedGetResponse>>({
       .reverse()
       .filter(
         (_, index) =>
-          index >= 10 * parseInt(page, 10) &&
-          index < 10 * (parseInt(page, 10) + 1)
+          index >= 25 * parseInt(page, 10) &&
+          index < 25 * (parseInt(page, 10) + 1)
       )
       .map(async (filename) => {
         const filePath = path.join(markdownPagesDirectory, filename);
         const fileContents = await fs.readFile(filePath, "utf8");
         const date = fileContents.match(/date: "(.*?)"/);
         const openingSentence = fileContents.match(
-          /---[\s\S]*?---[\s]*([\s\S]*)/
+          /---[\s\S]*?---[\s]*([\s\S]{150})/
         );
         const title = fileContents.match(/title: "(.*?)"/);
         const slug = fileContents.match(/slug: "(.*?)"/);
@@ -61,7 +61,7 @@ const handler = nc<NextApiRequest, NextApiResponse<ExtendedGetResponse>>({
         return {
           date: date ? date[1] : "",
           openingSentence: openingSentence
-            ? removeMarkdown(openingSentence[1]).slice(0, 140)
+            ? removeMarkdown(openingSentence[1]).slice(0, 72)
             : "",
           slug: slug ? slug[1] : "",
           title: title ? title[1] : "",

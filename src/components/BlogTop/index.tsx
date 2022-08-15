@@ -40,7 +40,7 @@ function BlogTop(): JSX.Element {
   }, [setSize]);
   const isReachingEnd = useMemo(
     () =>
-      data?.[0]?.length === 0 || (data && data[data.length - 1]?.length < 10),
+      data?.[0]?.length === 0 || (data && data[data.length - 1]?.length < 25),
     [data]
   );
 
