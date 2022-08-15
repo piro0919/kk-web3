@@ -5,8 +5,8 @@ import ScrollToTop from "components/ScrollToTop";
 import "github-markdown-css";
 import LogRocket from "logrocket";
 import setupLogRocketReact from "logrocket-react";
-import type { AppProps } from "next/app";
-import { GoogleAnalytics, usePageViews } from "nextjs-google-analytics";
+import type { AppProps, NextWebVitalsMetric } from "next/app";
+import { GoogleAnalytics, event, usePageViews } from "nextjs-google-analytics";
 import NextNProgress from "nextjs-progressbar";
 import { Toaster } from "react-hot-toast";
 import "ress";
@@ -25,8 +25,26 @@ if (
   setupLogRocketReact(LogRocket);
 }
 
+export function reportWebVitals({
+  id,
+  label,
+  name,
+  value,
+}: NextWebVitalsMetric): void {
+  event(
+    name,
+    {
+      category: label === "web-vital" ? "Web Vitals" : "Next.js custom metric",
+      label: id,
+      nonInteraction: true,
+      value: Math.round(name === "CLS" ? value * 1000 : value),
+    },
+    process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID
+  );
+}
+
 function MyApp({ Component, pageProps }: AppProps): JSX.Element {
-  usePageViews();
+  usePageViews({ gaMeasurementId: process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID });
 
   return (
     <>
