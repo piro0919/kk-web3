@@ -35,7 +35,7 @@ function Layout({ children }: LayoutProps): JSX.Element {
               transition={true}
             >
               {subNavigations.map(({ title, url: subNavigationUrl }) => (
-                <MenuItem key={url}>
+                <MenuItem key={subNavigationUrl}>
                   <Link href={`${url}${subNavigationUrl}`}>
                     <a>{title}</a>
                   </Link>
