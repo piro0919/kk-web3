@@ -1,7 +1,10 @@
 const path = require("path");
+const withBundleAnalyzer = require("@next/bundle-analyzer")({
+  enabled: process.env.ANALYZE === "true",
+});
 
 /** @type {import('next').NextConfig} */
-const nextConfig = {
+const nextConfig = withBundleAnalyzer({
   eslint: {
     ignoreDuringBuilds: true,
   },
@@ -29,6 +32,6 @@ const nextConfig = {
     includePaths: [path.join(__dirname, "src/styles")],
   },
   swcMinify: true,
-};
+});
 
 module.exports = nextConfig;
