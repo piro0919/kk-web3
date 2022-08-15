@@ -44,6 +44,7 @@
   word-break: break-all;
 }
 
+.pre code,
 .code {
   background-color: var(--color-canvas-subtle) !important;
   white-space: pre-wrap !important;
