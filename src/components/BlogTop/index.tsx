@@ -1,28 +1,28 @@
-import fetcher from "libs/fetcher";
 import Link from "next/link";
 import { GetEntriesData } from "pages/api/entries";
 import { Fragment, useCallback, useMemo } from "react";
 import InfiniteScroll, { Props } from "react-infinite-scroll-component";
 import { Oval } from "react-loader-spinner";
-import useSWRInfinite from "swr/infinite";
+import useSWRInfinite, { SWRInfiniteKeyLoader } from "swr/infinite";
 import styles from "./style.module.scss";
 
-function getKey(
-  pageIndex: number,
+const getKey: SWRInfiniteKeyLoader = (
+  pageIndex,
   previousPageData: GetEntriesData
-): string | null {
-  return previousPageData && !previousPageData.length
+) =>
+  previousPageData && !previousPageData.length
     ? null
     : `/api/entries?page=${pageIndex}`;
-}
 
 function BlogTop(): JSX.Element {
-  const { data, setSize } = useSWRInfinite<GetEntriesData>(getKey, fetcher);
+  const { data, setSize } = useSWRInfinite<GetEntriesData>(getKey, null, {
+    revalidateFirstPage: false,
+  });
   const entries = useMemo(() => (data ? data.flat() : []), [data]);
   const items = useMemo(
     () =>
       entries.map(({ date, openingSentence, slug, title }, index) => (
-        <Fragment key={slug}>
+        <Fragment key={index}>
           {index ? <hr className={styles.hr} /> : null}
           <Link href={slug}>
             <a className={styles.anchor}>

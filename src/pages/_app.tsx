@@ -3,6 +3,7 @@ import "@szhsin/react-menu/dist/transitions/slide.css";
 import Layout from "components/Layout";
 import ScrollToTop from "components/ScrollToTop";
 import "github-markdown-css";
+import fetcher from "libs/fetcher";
 import LogRocket from "logrocket";
 import setupLogRocketReact from "logrocket-react";
 import type { AppProps, NextWebVitalsMetric } from "next/app";
@@ -14,6 +15,7 @@ import "styles/fonts.scss";
 import "styles/globals.scss";
 import "styles/mq-settings.scss";
 import "styles/szh-menu.scss";
+import { SWRConfig } from "swr";
 
 if (
   typeof window !== "undefined" &&
@@ -49,9 +51,11 @@ function MyApp({ Component, pageProps }: AppProps): JSX.Element {
   return (
     <>
       <GoogleAnalytics />
-      <Layout>
-        <Component {...pageProps} />
-      </Layout>
+      <SWRConfig value={{ fetcher, revalidateOnFocus: false }}>
+        <Layout>
+          <Component {...pageProps} />
+        </Layout>
+      </SWRConfig>
       <NextNProgress color="#234794" height={2} />
       <ScrollToTop />
       <Toaster

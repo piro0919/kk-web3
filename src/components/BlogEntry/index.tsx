@@ -1,4 +1,3 @@
-import fetcher from "libs/fetcher";
 import { GetEntriesSlugData } from "pages/api/entries/[slug]";
 import { ReactElement, useMemo } from "react";
 import ReactMarkdown from "react-markdown";
@@ -19,7 +18,7 @@ export type BlogEntryProps = {
 };
 
 function BlogEntry({ slug }: BlogEntryProps): JSX.Element {
-  const { data } = useSWR<GetEntriesSlugData>(`/api/entries/${slug}`, fetcher);
+  const { data } = useSWR<GetEntriesSlugData>(`/api/entries/${slug}`);
   const { width: windowWidth } = useWindowSize();
   const { width: scrollbarWidth } = useScrollbarSize();
   const { breakpoint } = useBreakpoint(BREAKPOINTS, "desktop");
