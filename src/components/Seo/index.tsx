@@ -8,7 +8,7 @@ function Seo({ description, title }: SeoProps): JSX.Element {
 
   return (
     <NextSeo
-      canonical="https://kk-web.link/"
+      canonical={`https://kk-web.link${asPath}`}
       description={
         description ||
         "Freelance front end developer and video creator piro's website"
