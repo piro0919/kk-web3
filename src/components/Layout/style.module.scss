@@ -69,3 +69,41 @@
   position: absolute;
   width: 100%;
 }
+
+.studyGroupLinkWrapper {
+  position: fixed;
+  right: 0;
+  top: 0;
+  z-index: 1;
+}
+
+@mixin study-group($one-side) {
+  .studyGroupAnchor {
+    border-color: transparent var(--color-brand-blue) transparent transparent;
+    border-style: solid;
+    border-width: 0 $one-side $one-side 0;
+    display: block;
+    height: 0;
+    opacity: 0.75;
+    position: relative;
+    width: 0;
+  }
+
+  .icon {
+    color: var(--color-white);
+    font-size: calc($one-side / 3);
+    left: calc($one-side / 2);
+    margin: calc($one-side / -5) 0 0 calc($one-side / 5);
+    position: absolute;
+    top: calc($one-side / 2);
+    translate: -50% -50%;
+  }
+}
+
+@include mq.mq($until: tablet) {
+  @include study-group(64px);
+}
+
+@include mq.mq($from: tablet) {
+  @include study-group(84px);
+}

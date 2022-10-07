@@ -1,10 +1,12 @@
+import { useScrollPosition } from "@n8tb1t/use-scroll-position";
 import { Menu, MenuItem, MenuButton } from "@szhsin/react-menu";
 import Footer from "components/Footer";
 import Header from "components/Header";
 import useNavigation from "hooks/useNavigation";
 import Link from "next/link";
 import { ReactNode, useMemo } from "react";
-import { useWindowSize } from "usehooks-ts";
+import { FaReact } from "react-icons/fa";
+import { useBoolean, useWindowSize } from "usehooks-ts";
 import styles from "./style.module.scss";
 
 export type LayoutProps = {
@@ -53,6 +55,12 @@ function Layout({ children }: LayoutProps): JSX.Element {
       )),
     [navigations]
   );
+  const { setValue: setIsShowStudyGroupLink, value: isShowStudyGroupLink } =
+    useBoolean(true);
+
+  useScrollPosition(({ currPos: { y } }) => {
+    setIsShowStudyGroupLink(!y);
+  });
 
   return (
     <>
@@ -68,6 +76,15 @@ function Layout({ children }: LayoutProps): JSX.Element {
       <nav className={styles.nav}>
         <ul className={styles.list}>{items}</ul>
       </nav>
+      {isShowStudyGroupLink ? (
+        <div className={styles.studyGroupLinkWrapper}>
+          <Link href="/blog/20221007">
+            <a className={styles.studyGroupAnchor}>
+              <FaReact className={styles.icon} />
+            </a>
+          </Link>
+        </div>
+      ) : null}
     </>
   );
 }

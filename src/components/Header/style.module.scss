@@ -24,7 +24,12 @@
 .list {
   align-items: center;
   display: flex;
-  gap: 84px;
+  @include mq.mq($until: desktop) {
+    gap: 64px;
+  }
+  @include mq.mq($from: desktop) {
+    gap: 84px;
+  }
 }
 
 .active {
