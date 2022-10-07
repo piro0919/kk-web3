@@ -1,7 +1,7 @@
 import { ForwardedRef, forwardRef, useEffect } from "react";
-import ReCAPTCHA from "react-google-recaptcha";
 import { SubmitHandler, useForm } from "react-hook-form";
 import TextareaAutosize from "react-textarea-autosize";
+import Reaptcha, { Props } from "reaptcha";
 import styles from "./style.module.scss";
 
 type FieldValues = {
@@ -11,13 +11,13 @@ type FieldValues = {
   text: string;
 };
 
-export type ContactTopProps = {
+export type ContactTopProps = Pick<Props, "onVerify"> & {
   onSubmit: SubmitHandler<FieldValues>;
 };
 
 function ContactTop(
-  { onSubmit }: ContactTopProps,
-  recaptchaRef: ForwardedRef<ReCAPTCHA>
+  { onSubmit, onVerify }: ContactTopProps,
+  recaptchaRef: ForwardedRef<Reaptcha>
 ): JSX.Element {
   const {
     formState: { errors, isSubmitting },
@@ -42,7 +42,8 @@ function ContactTop(
       <div className={styles.inner}>
         <form onSubmit={handleSubmit(onSubmit)}>
           {process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY ? (
-            <ReCAPTCHA
+            <Reaptcha
+              onVerify={onVerify}
               ref={recaptchaRef}
               sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY}
               size="invisible"
@@ -130,4 +131,4 @@ function ContactTop(
   );
 }
 
-export default forwardRef<ReCAPTCHA, ContactTopProps>(ContactTop);
+export default forwardRef<Reaptcha, ContactTopProps>(ContactTop);

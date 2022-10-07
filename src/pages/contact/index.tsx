@@ -3,30 +3,39 @@ import ContactTop, { ContactTopProps } from "components/ContactTop";
 import Seo from "components/Seo";
 import { setCookie } from "nookies";
 import { PostEmailBody, PostEmailData } from "pages/api/email";
-import { useCallback, useRef } from "react";
-import ReCAPTCHA from "react-google-recaptcha";
+import { useCallback, useRef, useState } from "react";
 import toast from "react-hot-toast";
+import Reaptcha from "reaptcha";
 
 function Contact(): JSX.Element {
-  const recaptchaRef = useRef<ReCAPTCHA>(null);
+  const recaptchaRef = useRef<Reaptcha>(null);
+  const [fieldValues, setFieldValues] =
+    useState<Parameters<ContactTopProps["onSubmit"]>[0]>();
   const handleSubmit = useCallback<ContactTopProps["onSubmit"]>(
-    async ({ email, from, subject, text }) => {
+    async (fieldValues) => {
       if (!recaptchaRef.current) {
         return;
       }
 
-      const token = await recaptchaRef.current.executeAsync();
+      setFieldValues(fieldValues);
 
-      if (!token) {
+      await recaptchaRef.current.execute();
+    },
+    [setFieldValues]
+  );
+  const handleVerify = useCallback<ContactTopProps["onVerify"]>(
+    (recaptchaResponse) => {
+      if (!fieldValues) {
         return;
       }
 
-      setCookie(null, "token", token, {
+      setCookie(null, "token", recaptchaResponse, {
         maxAge: 60,
         path: "/",
         sameSite: "lax",
       });
 
+      const { email, from, subject, text } = fieldValues;
       const myPromise = axios.post<
         PostEmailData,
         AxiosResponse<PostEmailData>,
@@ -43,13 +52,17 @@ function Contact(): JSX.Element {
         success: "メールを送信しました！",
       });
     },
-    []
+    [fieldValues]
   );
 
   return (
     <>
       <Seo title="CONTACT" />
-      <ContactTop onSubmit={handleSubmit} ref={recaptchaRef} />
+      <ContactTop
+        onSubmit={handleSubmit}
+        onVerify={handleVerify}
+        ref={recaptchaRef}
+      />
     </>
   );
 }
