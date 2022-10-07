@@ -1,9 +1,11 @@
 import { GetEntriesSlugData } from "pages/api/entries/[slug]";
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
+import prismThemeOneDark from "prism-theme-one-dark/prism-onedark.css";
 import { ReactElement, useMemo } from "react";
 import ReactMarkdown from "react-markdown";
 import useScrollbarSize from "react-scrollbar-size";
-import SyntaxHighlighter from "react-syntax-highlighter";
-import { atomOneDark } from "react-syntax-highlighter/dist/cjs/styles/hljs";
+import { PrismAsyncLight as SyntaxHighlighter } from "react-syntax-highlighter";
 import rehypeRaw from "rehype-raw";
 import remarkGfm from "remark-gfm";
 import useSWR from "swr";
@@ -69,10 +71,7 @@ function BlogEntry({ slug }: BlogEntryProps): JSX.Element {
                     <SyntaxHighlighter
                       PreTag="div"
                       language={match[1]}
-                      style={
-                        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-                        atomOneDark as any
-                      }
+                      style={prismThemeOneDark}
                       {...props}
                     >
                       {String(children).replace(/\n$/, "")}

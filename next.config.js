@@ -10,10 +10,10 @@ const nextConfig = withBundleAnalyzer({
   },
   experimental: {
     forceSwcTransforms: true,
-    images: {
-      unoptimized: true,
-    },
     scrollRestoration: true,
+  },
+  images: {
+    unoptimized: true,
   },
   optimizeFonts: false,
   reactStrictMode: false,

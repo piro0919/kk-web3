@@ -17,6 +17,7 @@
     "nextjs-progressbar": "0.0.14",
     "nodemailer": "6.8.0",
     "nookies": "2.5.2",
+    "prism-theme-one-dark": "1.0.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-hook-form": "7.37.0",
