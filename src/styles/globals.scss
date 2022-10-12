@@ -39,8 +39,13 @@ a {
   text-decoration: none;
 }
 
-img {
+img,
+svg {
   pointer-events: none;
+}
+
+svg {
+  vertical-align: bottom;
 }
 
 ul {

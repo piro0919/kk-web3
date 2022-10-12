@@ -5,12 +5,17 @@
   background: rgba(var(--color-black-text), 0.95);
   display: flex;
   justify-content: center;
+  transition: 250ms;
   @include mq.mq($until: desktop) {
     padding: 24px 0;
   }
   @include mq.mq($from: desktop) {
     padding: 36px 0;
   }
+}
+
+.narrow {
+  padding: 16px 0;
 }
 
 .nav {

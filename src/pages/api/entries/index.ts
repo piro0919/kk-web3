@@ -1,11 +1,13 @@
 import { promises as fs } from "fs";
 import path from "path";
+import Fuse from "fuse.js";
 import removeMarkdown from "markdown-to-text";
 import { NextApiRequest, NextApiResponse } from "next";
 import nc from "next-connect";
 
 export type GetEntriesQuery = {
-  page: string;
+  page?: string;
+  q?: string;
 };
 
 type Entry = {
@@ -35,20 +37,14 @@ const handler = nc<NextApiRequest, NextApiResponse<ExtendedGetResponse>>({
     res.status(404).end("Page is not found");
   },
 }).get<ExtendedGetRequest, ExtendedGetResponse>(
-  async ({ query: { page } }, res) => {
+  async ({ query: { page, q } }, res) => {
     const markdownPagesDirectory = path.join(
       process.cwd(),
       "/src/markdown-pages"
     );
     const filenames = await fs.readdir(markdownPagesDirectory);
-    const markdownPages = filenames
-      .reverse()
-      .filter(
-        (_, index) =>
-          index >= 25 * parseInt(page, 10) &&
-          index < 25 * (parseInt(page, 10) + 1)
-      )
-      .map(async (filename) => {
+    const allMarkdownPages = await Promise.all(
+      filenames.reverse().map(async (filename) => {
         const filePath = path.join(markdownPagesDirectory, filename);
         const fileContents = await fs.readFile(filePath, "utf8");
         const date = fileContents.match(/date: "(.*?)"/);
@@ -59,6 +55,7 @@ const handler = nc<NextApiRequest, NextApiResponse<ExtendedGetResponse>>({
         const slug = fileContents.match(/slug: "(.*?)"/);
 
         return {
+          fileContents,
           date: date ? date[1] : "",
           openingSentence: openingSentence
             ? removeMarkdown(openingSentence[1]).slice(0, 72)
@@ -66,10 +63,35 @@ const handler = nc<NextApiRequest, NextApiResponse<ExtendedGetResponse>>({
           slug: slug ? slug[1] : "",
           title: title ? title[1] : "",
         };
-      });
+      })
+    );
+    const markdownPages = q
+      ? new Fuse(allMarkdownPages, {
+          keys: ["fileContents"],
+          shouldSort: false,
+          threshold: 0.75,
+          useExtendedSearch: true,
+        })
+          .search(q)
+          .map(({ item }) => item)
+      : allMarkdownPages;
 
     res.status(200);
-    res.json(await Promise.all(markdownPages));
+    res.json(
+      markdownPages
+        .filter(
+          (_, index) =>
+            index >= 25 * (typeof page === "string" ? parseInt(page, 10) : 0) &&
+            index <
+              25 * ((typeof page === "string" ? parseInt(page, 10) : 0) + 1)
+        )
+        .map((tmpMarkdownPages) => {
+          // eslint-disable-next-line unused-imports/no-unused-vars
+          const { fileContents, ...markdownPages } = tmpMarkdownPages;
+
+          return markdownPages;
+        })
+    );
     res.end();
   }
 );

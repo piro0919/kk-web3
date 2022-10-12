@@ -3,15 +3,51 @@
 .wrapper {
   display: flex;
   justify-content: center;
-  padding: 24px 0;
+  padding: 0 0 24px;
 }
 
 .inner {
   @include mixin.narrow-content;
 
+  display: grid;
+  position: relative;
+
   @include mq.mq($until: tablet) {
+    gap: 12px;
     padding-left: 0;
     padding-right: 0;
+  }
+  @include mq.mq($from: tablet) {
+    gap: 24px;
+  }
+}
+
+.autosuggestWrapper {
+  backdrop-filter: blur(1px);
+  /* stylelint-disable-next-line color-function-notation */
+  background: rgba(var(--color-black-text), 0.95);
+  position: sticky;
+  transition: 250ms;
+
+  @include mq.mq($until: tablet) {
+    padding: 12px 60px 12px 12px;
+    top: 0;
+  }
+  @include mq.mq($from: tablet, $until: desktop) {
+    top: 69px;
+  }
+  @include mq.mq($from: desktop) {
+    top: 93px;
+  }
+}
+
+.narrow {
+  @include mq.mq($until: tablet) {
+    padding-right: 12px;
+  }
+  @include mq.mq($from: tablet) {
+    padding-bottom: 12px;
+    top: 53px;
   }
 }
 

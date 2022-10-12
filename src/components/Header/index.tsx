@@ -1,7 +1,9 @@
+import { useScrollPosition } from "@n8tb1t/use-scroll-position";
 import { Menu, MenuItem, MenuButton } from "@szhsin/react-menu";
 import useNavigation from "hooks/useNavigation";
 import Link from "next/link";
 import { useMemo } from "react";
+import { useBoolean } from "usehooks-ts";
 import styles from "./style.module.scss";
 
 function Header(): JSX.Element {
@@ -39,9 +41,14 @@ function Header(): JSX.Element {
       )),
     [navigations]
   );
+  const { setValue: setIsNarrow, value: isNarrow } = useBoolean(false);
+
+  useScrollPosition(({ currPos: { y } }) => {
+    setIsNarrow(!!y);
+  });
 
   return (
-    <header className={styles.header}>
+    <header className={`${styles.header} ${isNarrow ? styles.narrow : ""}`}>
       <nav className={styles.nav}>
         <ul className={styles.list}>{items}</ul>
       </nav>

@@ -11,6 +11,7 @@
 }
 
 .headerWrapper {
+  backdrop-filter: blur(1px);
   position: sticky;
   top: 0;
   z-index: 1;

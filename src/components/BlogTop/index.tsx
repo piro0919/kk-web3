@@ -1,9 +1,12 @@
+import { useScrollPosition } from "@n8tb1t/use-scroll-position";
+import Autosuggest from "components/Autosuggest";
 import Link from "next/link";
 import { GetEntriesData } from "pages/api/entries";
 import { Fragment, useCallback, useMemo } from "react";
 import InfiniteScroll, { Props } from "react-infinite-scroll-component";
 import { Oval } from "react-loader-spinner";
 import useSWRInfinite, { SWRInfiniteKeyLoader } from "swr/infinite";
+import { useBoolean } from "usehooks-ts";
 import styles from "./style.module.scss";
 
 const getKey: SWRInfiniteKeyLoader = (
@@ -43,10 +46,22 @@ function BlogTop(): JSX.Element {
       data?.[0]?.length === 0 || (data && data[data.length - 1]?.length < 25),
     [data]
   );
+  const { setValue: setIsNarrow, value: isNarrow } = useBoolean(false);
+
+  useScrollPosition(({ currPos: { y } }) => {
+    setIsNarrow(!!y);
+  });
 
   return (
     <div className={styles.wrapper}>
       <div className={styles.inner}>
+        <div
+          className={`${styles.autosuggestWrapper} ${
+            isNarrow ? styles.narrow : ""
+          }`}
+        >
+          <Autosuggest />
+        </div>
         <InfiniteScroll
           className={styles.infiniteScroll}
           dataLength={items.length}

@@ -1,0 +1,54 @@
+.wrapper {
+  height: 30px;
+}
+
+.inputWrapper {
+  align-items: center;
+  background: var(--color-black);
+  display: grid;
+  grid-template: auto / auto 1fr auto;
+}
+
+.iconWrapper {
+  align-items: center;
+  display: flex;
+  height: 28px;
+  justify-content: center;
+  margin: 0 8px;
+  width: 28px;
+}
+
+// ここから react-autosuggest の theme
+.container {
+  border: 1px solid var(--color-gray);
+  border-radius: 15px;
+  overflow: hidden;
+}
+
+.input {
+  color: var(--color-white);
+  font-family: arial, sans-serif;
+}
+
+.suggestionsContainer {
+  background: var(--color-black);
+}
+
+.suggestionsContainerOpen {
+  padding: 2px 0;
+}
+
+.suggestion {
+  cursor: pointer;
+  padding: 2px 12px;
+  position: relative;
+}
+
+.suggestionHighlighted::before {
+  background: var(--color-white);
+  content: "";
+  display: block;
+  inset: 0;
+  opacity: 0.1;
+  position: absolute;
+}
