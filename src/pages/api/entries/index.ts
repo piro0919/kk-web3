@@ -67,8 +67,8 @@ const handler = nc<NextApiRequest, NextApiResponse<ExtendedGetResponse>>({
     );
     const markdownPages = q
       ? new Fuse(allMarkdownPages, {
+          isCaseSensitive: false,
           keys: ["fileContents"],
-          shouldSort: false,
           threshold: 0.75,
           useExtendedSearch: true,
         })
