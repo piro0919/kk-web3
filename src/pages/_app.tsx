@@ -1,14 +1,15 @@
 import "@szhsin/react-menu/dist/core.css";
 import "@szhsin/react-menu/dist/transitions/slide.css";
-import Layout from "components/Layout";
 import ScrollToTop from "components/ScrollToTop";
 import "github-markdown-css";
 import fetcher from "libs/fetcher";
 import LogRocket from "logrocket";
 import setupLogRocketReact from "logrocket-react";
+import { NextPage } from "next";
 import type { AppProps, NextWebVitalsMetric } from "next/app";
 import { GoogleAnalytics, event, usePageViews } from "nextjs-google-analytics";
 import NextNProgress from "nextjs-progressbar";
+import { ReactElement, ReactNode } from "react";
 import { Toaster } from "react-hot-toast";
 import "ress";
 import "styles/fonts.scss";
@@ -45,16 +46,24 @@ export function reportWebVitals({
   );
 }
 
-function MyApp({ Component, pageProps }: AppProps): JSX.Element {
+type NextPageWithLayout = NextPage & {
+  getLayout?: (page: ReactElement) => ReactNode;
+};
+
+type AppPropsWithLayout = AppProps & {
+  Component: NextPageWithLayout;
+};
+
+function MyApp({ Component, pageProps }: AppPropsWithLayout): JSX.Element {
+  const getLayout = Component.getLayout ?? ((page): ReactNode => page);
+
   usePageViews({ gaMeasurementId: process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID });
 
   return (
     <>
       <GoogleAnalytics />
       <SWRConfig value={{ fetcher, revalidateOnFocus: false }}>
-        <Layout>
-          <Component {...pageProps} />
-        </Layout>
+        {getLayout(<Component {...pageProps} />)}
       </SWRConfig>
       <NextNProgress color="#234794" height={2} />
       <ScrollToTop />

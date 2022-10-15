@@ -1,9 +1,11 @@
 import { promises as fs } from "fs";
 import path from "path";
 import BlogTop from "components/BlogTop";
+import Layout from "components/Layout";
 import Seo from "components/Seo";
 import removeMarkdown from "markdown-to-text";
 import { GetStaticProps } from "next";
+import { ReactElement } from "react";
 import { SWRConfig } from "swr";
 
 type MarkdownPage = {
@@ -27,6 +29,10 @@ function Blog({ fallbackData }: BlogProps): JSX.Element {
     </>
   );
 }
+
+Blog.getLayout = function getLayout(page: ReactElement): JSX.Element {
+  return <Layout>{page}</Layout>;
+};
 
 export const getStaticProps: GetStaticProps<BlogProps> = async () => {
   const markdownPagesDirectory = path.join(

@@ -78,7 +78,7 @@ function Layout({ children }: LayoutProps): JSX.Element {
       </nav>
       {isShowStudyGroupLink ? (
         <div className={styles.studyGroupLinkWrapper}>
-          <Link href="/blog/20221007">
+          <Link href="/lesson">
             <a className={styles.studyGroupAnchor}>
               <FaReact className={styles.icon} />
             </a>

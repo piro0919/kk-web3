@@ -1,9 +1,10 @@
 import axios, { AxiosResponse } from "axios";
 import ContactTop, { ContactTopProps } from "components/ContactTop";
+import Layout from "components/Layout";
 import Seo from "components/Seo";
 import { setCookie } from "nookies";
 import { PostEmailBody, PostEmailData } from "pages/api/email";
-import { useCallback, useRef, useState } from "react";
+import { ReactElement, useCallback, useRef, useState } from "react";
 import toast from "react-hot-toast";
 import Reaptcha from "reaptcha";
 
@@ -66,5 +67,9 @@ function Contact(): JSX.Element {
     </>
   );
 }
+
+Contact.getLayout = function getLayout(page: ReactElement): JSX.Element {
+  return <Layout>{page}</Layout>;
+};
 
 export default Contact;

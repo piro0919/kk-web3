@@ -1,5 +1,7 @@
+import Layout from "components/Layout";
 import Seo from "components/Seo";
 import WebSiteTop from "components/WebSiteTop";
+import { ReactElement } from "react";
 
 function WebSite(): JSX.Element {
   return (
@@ -9,5 +11,9 @@ function WebSite(): JSX.Element {
     </>
   );
 }
+
+WebSite.getLayout = function getLayout(page: ReactElement): JSX.Element {
+  return <Layout>{page}</Layout>;
+};
 
 export default WebSite;

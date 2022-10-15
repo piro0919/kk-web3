@@ -1,8 +1,10 @@
 import { promises as fs } from "fs";
 import path from "path";
 import BlogEntry, { BlogEntryProps } from "components/BlogEntry";
+import Layout from "components/Layout";
 import Seo, { SeoProps } from "components/Seo";
 import { GetStaticPaths, GetStaticProps } from "next";
+import { ReactElement } from "react";
 import { SWRConfig } from "swr";
 
 type MarkdownPage = {
@@ -29,6 +31,10 @@ function Slug({ description, fallback, slug, title }: SlugProps): JSX.Element {
     </>
   );
 }
+
+Slug.getLayout = function getLayout(page: ReactElement): JSX.Element {
+  return <Layout>{page}</Layout>;
+};
 
 type ParsedUrlQuery = {
   slug: string;
