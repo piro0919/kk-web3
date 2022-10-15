@@ -8,7 +8,7 @@ function LessonTop(): JSX.Element {
   return (
     <div className={styles.wrapper} style={{ minHeight: height }}>
       <div className={styles.inner}>
-        <h2>フロントエンド開発レッスン</h2>
+        <h1 className={styles.heading1}>フロントエンド開発レッスン</h1>
         <hr className={styles.hr} />
         <dl className={styles.list}>
           <div className={styles.item}>
