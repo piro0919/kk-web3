@@ -2,15 +2,26 @@
   background: var(--color-light-white);
   color: var(--color-black);
   display: grid;
-  padding: 24px;
+  @include mq.mq($until: tablet) {
+    padding: 12px;
+  }
+  @include mq.mq($from: tablet) {
+    padding: 24px;
+  }
 }
 
 .inner {
   align-content: flex-start;
   border: 1px solid var(--color-brand-blue);
   display: grid;
-  gap: 24px;
-  padding: 24px;
+  @include mq.mq($until: tablet) {
+    gap: 12px;
+    padding: 12px;
+  }
+  @include mq.mq($from: tablet) {
+    gap: 24px;
+    padding: 24px;
+  }
 }
 
 .hr {
@@ -26,7 +37,12 @@
 
 .item {
   display: grid;
-  gap: 4px;
+  gap: 2px;
+}
+
+.term {
+  font-size: 1.2rem;
+  font-weight: 700;
 }
 
 .description {

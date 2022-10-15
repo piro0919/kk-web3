@@ -12,36 +12,40 @@ function LessonTop(): JSX.Element {
         <hr className={styles.hr} />
         <dl className={styles.list}>
           <div className={styles.item}>
-            <dt>概要</dt>
+            <dt className={styles.term}>概要</dt>
             <dd className={styles.description}>
               React を使用しフロントエンド開発のいろはを学べます。
             </dd>
           </div>
           <div className={styles.item}>
-            <dt>目標</dt>
+            <dt className={styles.term}>目標</dt>
             <dd className={styles.description}>
               Web サイトまたは Web サービスのリリースを目標とします。
             </dd>
           </div>
           <div className={styles.item}>
-            <dt>対象</dt>
+            <dt className={styles.term}>対象</dt>
             <dd className={styles.description}>フロントエンド開発初心者の方</dd>
           </div>
           <div className={styles.item}>
-            <dt>会得可能なスキル</dt>
+            <dt className={styles.term}>会得可能なスキル</dt>
             <dd className={styles.description}>
               <ul>
                 {[
                   "React",
                   "Next.js",
+                  "SWR",
                   "CSS Modules",
+                  "styled-components",
                   "TypeScript",
                   "ESLint",
                   "Stylelint",
                   "Prettier",
+                  "Contentful",
+                  "Atomic Design",
                   "Git",
                   "GitHub",
-                  "コードレビュー",
+                  "Vercel",
                   "その他、河村が把握しているスキルはすべて会得可能です。",
                 ].map((children) => (
                   <li className={styles.item2} key={children}>
@@ -52,7 +56,7 @@ function LessonTop(): JSX.Element {
             </dd>
           </div>
           <div className={styles.item}>
-            <dt>受講方法</dt>
+            <dt className={styles.term}>受講方法</dt>
             <dd className={styles.description}>
               GitHub を使用し Issue ベースの開発を行っていただきます。
               <br />
@@ -62,7 +66,7 @@ function LessonTop(): JSX.Element {
             </dd>
           </div>
           <div className={styles.item}>
-            <dt>準備物</dt>
+            <dt className={styles.term}>準備物</dt>
             <dd className={styles.description}>
               <ul>
                 {[
@@ -78,7 +82,7 @@ function LessonTop(): JSX.Element {
             </dd>
           </div>
           <div className={styles.item}>
-            <dt>河村について</dt>
+            <dt className={styles.term}>河村について</dt>
             <dd className={styles.description}>
               <Link href="/">
                 <a className={styles.anchor}>Web サイト</a>
@@ -87,11 +91,11 @@ function LessonTop(): JSX.Element {
             </dd>
           </div>
           <div className={styles.item}>
-            <dt>2022 年 10 月時点の受講者数</dt>
+            <dt className={styles.term}>2022 年 10 月時点の受講者数</dt>
             <dd className={styles.description}>3 人</dd>
           </div>
           <div className={styles.item}>
-            <dt>受講料</dt>
+            <dt className={styles.term}>受講料</dt>
             <dd className={styles.description}>無料</dd>
           </div>
         </dl>
