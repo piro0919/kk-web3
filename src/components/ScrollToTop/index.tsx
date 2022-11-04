@@ -1,3 +1,4 @@
+"use client";
 import ReactScrollToTop from "react-scroll-to-top";
 import styles from "./style.module.scss";
 

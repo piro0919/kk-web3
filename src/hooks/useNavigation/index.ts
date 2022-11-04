@@ -1,4 +1,4 @@
-import { useRouter } from "next/router";
+import { usePathname } from "next/navigation";
 import { useMemo } from "react";
 
 type SubNavigation = {
@@ -16,7 +16,7 @@ type Navigation = {
 export type NavigationData = Navigation[];
 
 function useNavigation(): NavigationData {
-  const { pathname } = useRouter();
+  const pathname = usePathname();
   const navigations = useMemo(
     () =>
       [

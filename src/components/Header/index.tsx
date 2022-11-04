@@ -1,10 +1,18 @@
 import { useScrollPosition } from "@n8tb1t/use-scroll-position";
+import { Montserrat } from "@next/font/google";
 import { Menu, MenuItem, MenuButton } from "@szhsin/react-menu";
 import useNavigation from "hooks/useNavigation";
 import Link from "next/link";
 import { useMemo } from "react";
 import { useBoolean } from "usehooks-ts";
 import styles from "./style.module.scss";
+
+// eslint-disable-next-line new-cap
+const montserrat = Montserrat({
+  fallback: ["sans-serif"],
+  preload: true,
+  subsets: ["latin"],
+});
 
 function Header(): JSX.Element {
   const navigations = useNavigation();
@@ -26,15 +34,13 @@ function Header(): JSX.Element {
             >
               {subNavigations.map(({ title, url: subNavigationUrl }) => (
                 <MenuItem key={subNavigationUrl}>
-                  <Link href={`${url}${subNavigationUrl}`}>
-                    <a>{title}</a>
-                  </Link>
+                  <Link href={`${url}${subNavigationUrl}`}>{title}</Link>
                 </MenuItem>
               ))}
             </Menu>
           ) : (
-            <Link href={url}>
-              <a className={isActive ? styles.active : ""}>{title}</a>
+            <Link className={isActive ? styles.active : ""} href={url}>
+              {title}
             </Link>
           )}
         </li>
@@ -49,7 +55,7 @@ function Header(): JSX.Element {
 
   return (
     <header className={`${styles.header} ${isNarrow ? styles.narrow : ""}`}>
-      <nav className={styles.nav}>
+      <nav className={`${styles.nav} ${montserrat.className}`}>
         <ul className={styles.list}>{items}</ul>
       </nav>
     </header>

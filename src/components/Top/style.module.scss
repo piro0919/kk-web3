@@ -37,7 +37,6 @@
 
 .title {
   color: var(--color-black);
-  font-family: "M PLUS 1 Code", sans-serif;
   font-style: italic;
   @include mq.mq($until: tablet) {
     font-size: 1.8rem;

@@ -1,3 +1,4 @@
+"use client";
 import { GetEntriesSlugData } from "pages/api/entries/[slug]";
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore

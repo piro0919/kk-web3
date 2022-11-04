@@ -51,6 +51,9 @@ const handler = nc<NextApiRequest, NextApiResponse<ExtendedPostResponse>>({
     port: 465,
     secure: true,
     service: "gmail",
+    tls: {
+      rejectUnauthorized: !process.env.URL?.includes("localhost"),
+    },
   });
   const { replyTo, subject, text } = body as PostEmailBody;
   const info = await transporter.sendMail({

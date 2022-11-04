@@ -1,3 +1,4 @@
+"use client";
 import { useScrollPosition } from "@n8tb1t/use-scroll-position";
 import Autosuggest from "components/Autosuggest";
 import Link from "next/link";
@@ -27,12 +28,10 @@ function BlogTop(): JSX.Element {
       entries.map(({ date, openingSentence, slug, title }, index) => (
         <Fragment key={index}>
           {index ? <hr className={styles.hr} /> : null}
-          <Link href={slug}>
-            <a className={styles.anchor}>
-              <h2 className={styles.title}>{title}</h2>
-              <p className={styles.openingSentence}>{`${openingSentence}…`}</p>
-              <div className={styles.dateWrapper}>{date}</div>
-            </a>
+          <Link className={styles.anchor} href={slug}>
+            <h2 className={styles.title}>{title}</h2>
+            <p className={styles.openingSentence}>{`${openingSentence}…`}</p>
+            <div className={styles.dateWrapper}>{date}</div>
           </Link>
         </Fragment>
       )),

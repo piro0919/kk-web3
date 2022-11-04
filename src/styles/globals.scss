@@ -23,7 +23,6 @@ html {
 body {
   background: var(--color-black);
   color: var(--color-white);
-  font-family: jkg, sans-serif;
   font-size: 1.4rem;
   letter-spacing: 0.5px;
   line-height: 1.5;
@@ -54,4 +53,8 @@ ul {
 
 .grecaptcha-badge {
   bottom: 84px !important;
+}
+
+[data-nextjs-scroll-focus-boundary] {
+  display: contents;
 }

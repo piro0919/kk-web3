@@ -1,14 +1,15 @@
+"use client";
 import { NextSeo, NextSeoProps } from "next-seo";
-import { useRouter } from "next/router";
+import { usePathname } from "next/navigation";
 
 export type SeoProps = Pick<NextSeoProps, "description" | "title">;
 
 function Seo({ description, title }: SeoProps): JSX.Element {
-  const { asPath } = useRouter();
+  const pathname = usePathname();
 
   return (
     <NextSeo
-      canonical={`https://kk-web.link${asPath}`}
+      canonical={`https://kk-web.link${pathname}`}
       description={
         description ||
         "Freelance front end developer and video creator piro's website"
@@ -28,12 +29,13 @@ function Seo({ description, title }: SeoProps): JSX.Element {
         ],
         site_name: "kk-web",
         title: `${title ? `${title} - ` : ""}kk-web`,
-        url: `https://kk-web.link${asPath}`,
+        url: `https://kk-web.link${pathname}`,
       }}
       title={`${title ? `${title} - ` : ""}kk-web`}
       twitter={{
         cardType: "summary_large_image",
       }}
+      useAppDir={true}
     />
   );
 }

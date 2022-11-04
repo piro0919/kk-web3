@@ -1,3 +1,4 @@
+"use client";
 import Link from "next/link";
 import { useWindowSize } from "usehooks-ts";
 import styles from "./style.module.scss";
@@ -84,8 +85,8 @@ function LessonTop(): JSX.Element {
           <div className={styles.item}>
             <dt className={styles.term}>河村について</dt>
             <dd className={styles.description}>
-              <Link href="/">
-                <a className={styles.anchor}>Web サイト</a>
+              <Link className={styles.anchor} href="/">
+                Web サイト
               </Link>
               をご確認いただきたく思います。
             </dd>
@@ -105,8 +106,8 @@ function LessonTop(): JSX.Element {
           Discord（piro#7018）をフレンドに追加していただきたく思います。
           <br />
           またもう少しレッスンの詳細を知りたい方につきましては、
-          <Link href="/contact">
-            <a className={styles.anchor}>コンタクトフォーム</a>
+          <Link className={styles.anchor} href="/contact">
+            コンタクトフォーム
           </Link>
           よりご連絡いただきたく思います。
         </p>

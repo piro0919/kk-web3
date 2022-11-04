@@ -1,6 +1,8 @@
-import { useRouter } from "next/router";
+"use client";
+import { useRouter, useSearchParams } from "next/navigation";
 import { GetEntriesData } from "pages/api/entries";
-import { useEffect, useState } from "react";
+import queryString from "query-string";
+import { useEffect, useMemo, useState } from "react";
 import ReactAutosuggest from "react-autosuggest";
 import { DebounceInput } from "react-debounce-input";
 import { FaSearch } from "react-icons/fa";
@@ -11,10 +13,9 @@ import styles from "./style.module.scss";
 
 function Autosuggest(): JSX.Element {
   const [value, setValue] = useState("");
-  const {
-    query: { q },
-    ...router
-  } = useRouter();
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const q = useMemo(() => searchParams.get("q"), [searchParams]);
   const { data, isValidating } = useSWR<GetEntriesData>(
     value ? `/api/entries?q=${value}` : null
   );
@@ -48,18 +49,16 @@ function Autosuggest(): JSX.Element {
             return;
           }
 
-          router.push("/blog", undefined, { shallow: true });
+          router.push("/blog");
         }}
         onSuggestionsFetchRequested={async ({ value }): Promise<void> => {
           router.push(
-            {
-              pathname: "/blog",
+            queryString.stringifyUrl({
               query: {
                 q: value,
               },
-            },
-            undefined,
-            { shallow: true }
+              url: "/blog",
+            })
           );
         }}
         renderInputComponent={({ ref, ...inputProps }): JSX.Element => (
@@ -77,7 +76,7 @@ function Autosuggest(): JSX.Element {
             <div className={styles.iconWrapper}>
               <button
                 onClick={(): void => {
-                  router.push("/blog", undefined, { shallow: true });
+                  router.push("/blog");
 
                   setValue("");
                 }}

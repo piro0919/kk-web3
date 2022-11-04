@@ -9,8 +9,8 @@ const nextConfig = withBundleAnalyzer({
     ignoreDuringBuilds: true,
   },
   experimental: {
-    forceSwcTransforms: true,
-    scrollRestoration: true,
+    appDir: true,
+    // scrollRestoration: true,
   },
   images: {
     unoptimized: true,
