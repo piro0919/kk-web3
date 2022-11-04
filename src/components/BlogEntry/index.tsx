@@ -1,4 +1,5 @@
 "use client";
+import NoSSR from "@mpth/react-no-ssr";
 import { GetEntriesSlugData } from "pages/api/entries/[slug]";
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
@@ -6,7 +7,7 @@ import prismThemeOneDark from "prism-theme-one-dark/prism-onedark.css";
 import { ReactElement, useMemo } from "react";
 import ReactMarkdown from "react-markdown";
 import useScrollbarSize from "react-scrollbar-size";
-import { PrismAsyncLight as SyntaxHighlighter } from "react-syntax-highlighter";
+import SyntaxHighlighter from "react-syntax-highlighter";
 import rehypeRaw from "rehype-raw";
 import remarkGfm from "remark-gfm";
 import useSWR from "swr";
@@ -69,14 +70,17 @@ function BlogEntry({ slug }: BlogEntryProps): JSX.Element {
                   const match = /language-(\w+)/.exec(className || "");
 
                   return !inline && match ? (
-                    <SyntaxHighlighter
-                      PreTag="div"
-                      language={match[1]}
-                      style={prismThemeOneDark}
-                      {...props}
-                    >
-                      {String(children).replace(/\n$/, "")}
-                    </SyntaxHighlighter>
+                    // TODO: 消したい
+                    <NoSSR>
+                      <SyntaxHighlighter
+                        PreTag="div"
+                        language={match[1]}
+                        style={prismThemeOneDark}
+                        {...props}
+                      >
+                        {String(children).replace(/\n$/, "")}
+                      </SyntaxHighlighter>
+                    </NoSSR>
                   ) : (
                     <code className={`${className} ${styles.code}`} {...props}>
                       {children}

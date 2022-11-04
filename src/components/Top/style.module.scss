@@ -37,7 +37,7 @@
 
 .title {
   color: var(--color-black);
-  font-style: italic;
+  font-style: italic !important;
   @include mq.mq($until: tablet) {
     font-size: 1.8rem;
   }

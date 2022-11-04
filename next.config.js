@@ -10,7 +10,7 @@ const nextConfig = withBundleAnalyzer({
   },
   experimental: {
     appDir: true,
-    // scrollRestoration: true,
+    scrollRestoration: true,
   },
   images: {
     unoptimized: true,
