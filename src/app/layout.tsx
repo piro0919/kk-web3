@@ -2,6 +2,7 @@
 import localFont from "@next/font/local";
 import "@szhsin/react-menu/dist/core.css";
 import "@szhsin/react-menu/dist/transitions/slide.css";
+import Analytics from "components/Analytics";
 import Layout from "components/Layout";
 import ScrollToTop from "components/ScrollToTop";
 import "github-markdown-css";
@@ -88,6 +89,7 @@ function RootLayout({ children }: RootLayoutProps): JSX.Element {
             },
           }}
         />
+        <Analytics />
       </body>
     </html>
   );
