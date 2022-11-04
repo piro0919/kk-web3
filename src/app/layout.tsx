@@ -8,9 +8,10 @@ import "github-markdown-css";
 import fetcher from "libs/fetcher";
 import LogRocket from "logrocket";
 import setupLogRocketReact from "logrocket-react";
-import type { NextWebVitalsMetric } from "next/app";
+// import type { NextWebVitalsMetric } from "next/app";
 import { usePathname } from "next/navigation";
-import { GoogleAnalytics, event, usePageViews } from "nextjs-google-analytics";
+// import { GoogleAnalytics, event, usePageViews } from "nextjs-google-analytics";
+import { GoogleAnalytics, usePageViews } from "nextjs-google-analytics";
 import NextNProgress from "nextjs-progressbar";
 import { ReactNode } from "react";
 import { Toaster } from "react-hot-toast";
@@ -30,23 +31,23 @@ if (
   setupLogRocketReact(LogRocket);
 }
 
-export function reportWebVitals({
-  id,
-  label,
-  name,
-  value,
-}: NextWebVitalsMetric): void {
-  event(
-    name,
-    {
-      category: label === "web-vital" ? "Web Vitals" : "Next.js custom metric",
-      label: id,
-      nonInteraction: true,
-      value: Math.round(name === "CLS" ? value * 1000 : value),
-    },
-    process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID
-  );
-}
+// export function reportWebVitals({
+//   id,
+//   label,
+//   name,
+//   value,
+// }: NextWebVitalsMetric): void {
+//   event(
+//     name,
+//     {
+//       category: label === "web-vital" ? "Web Vitals" : "Next.js custom metric",
+//       label: id,
+//       nonInteraction: true,
+//       value: Math.round(name === "CLS" ? value * 1000 : value),
+//     },
+//     process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID
+//   );
+// }
 
 const jkg = localFont({
   fallback: ["sans-serif"],
