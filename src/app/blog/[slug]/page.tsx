@@ -42,9 +42,14 @@ export async function generateStaticParams(): Promise<{ slug: string }[]> {
     "/src/markdown-pages"
   );
   const filenames = await fs.readdir(markdownPagesDirectory);
-  const markdownPages = filenames.map((filename) => ({
-    slug: filename.replace(".md", ""),
-  }));
+  const markdownPages = filenames
+    .reverse()
+    .filter((_, index) => index < 25)
+    .map((filename) => ({
+      slug: filename.replace(".md", ""),
+    }));
+
+  console.log(await Promise.all(markdownPages));
 
   return await Promise.all(markdownPages);
 }
