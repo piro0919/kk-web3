@@ -1,5 +1,3 @@
-import { promises as fs } from "fs";
-import path from "path";
 import SwrConfig from "app/SwrConfig";
 import BlogEntry from "components/BlogEntry";
 import Title from "components/Title";
@@ -36,20 +34,20 @@ async function Page({ params: { slug } }: PageProps): Promise<JSX.Element> {
   );
 }
 
-export async function generateStaticParams(): Promise<{ slug: string }[]> {
-  const markdownPagesDirectory = path.join(
-    process.cwd(),
-    "/src/markdown-pages"
-  );
-  const filenames = await fs.readdir(markdownPagesDirectory);
-  const markdownPages = filenames
-    .reverse()
-    .filter((_, index) => index < 25)
-    .map((filename) => ({
-      slug: filename.replace(".md", ""),
-    }));
+// export async function generateStaticParams(): Promise<{ slug: string }[]> {
+//   const markdownPagesDirectory = path.join(
+//     process.cwd(),
+//     "/src/markdown-pages"
+//   );
+//   const filenames = await fs.readdir(markdownPagesDirectory);
+//   const markdownPages = filenames
+//     .reverse()
+//     .filter((_, index) => index < 25)
+//     .map((filename) => ({
+//       slug: filename.replace(".md", ""),
+//     }));
 
-  return await Promise.all(markdownPages);
-}
+//   return await Promise.all(markdownPages);
+// }
 
 export default Page;
