@@ -49,8 +49,6 @@ export async function generateStaticParams(): Promise<{ slug: string }[]> {
       slug: filename.replace(".md", ""),
     }));
 
-  console.log(await Promise.all(markdownPages));
-
   return await Promise.all(markdownPages);
 }
 
