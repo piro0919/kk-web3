@@ -3,33 +3,18 @@ import path from "path";
 import SwrConfig from "app/SwrConfig";
 import BlogEntry from "components/BlogEntry";
 import Title from "components/Title";
+import { GetEntriesSlugData } from "pages/api/entries/[slug]";
 
-type MarkdownPage = {
-  body: string;
-  date: string;
+async function getEntry({
+  slug,
+}: {
   slug: string;
-  title: string;
-};
+}): Promise<GetEntriesSlugData> {
+  const res = await fetch(`${process.env.URL}/api/entries/${slug}`, {
+    next: { revalidate: 60 * 60 * 24 },
+  });
 
-async function getEntry({ slug }: { slug: string }): Promise<MarkdownPage> {
-  const filePath = path.join(
-    process.cwd(),
-    "/src/markdown-pages",
-    `/${slug}.md`
-  );
-  const fileContents = await fs.readFile(filePath, "utf8");
-  const body = fileContents.match(/---[\s\S]*?---[\s]*([\s\S]*)/);
-  const date = fileContents.match(/date: "(.*?)"/);
-  const title = fileContents.match(/title: "(.*?)"/);
-  // const slug = fileContents.match(/slug: "(.*?)"/);
-  const markdownPage = {
-    slug,
-    body: body ? body[1] : "",
-    date: date ? date[1] : "",
-    title: title ? title[1] : "",
-  };
-
-  return markdownPage;
+  return res.json();
 }
 
 export type PageProps = {
@@ -63,7 +48,5 @@ export async function generateStaticParams(): Promise<{ slug: string }[]> {
 
   return await Promise.all(markdownPages);
 }
-
-export const revalidate = 60 * 60 * 24;
 
 export default Page;
