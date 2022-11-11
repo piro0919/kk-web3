@@ -2,7 +2,7 @@
 import Seo from "components/Seo";
 
 function Head(): JSX.Element {
-  return <Seo title="MOVIE" />;
+  return <Seo title="MOVIE" type="article" />;
 }
 
 export default Head;

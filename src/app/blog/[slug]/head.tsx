@@ -22,7 +22,7 @@ export type HeadProps = {
 async function Head({ params: { slug } }: HeadProps): Promise<JSX.Element> {
   const { body, title } = await getEntry({ slug });
 
-  return <Seo description={body} title={title} />;
+  return <Seo description={body} title={title} type="article" />;
 }
 
 export default Head;

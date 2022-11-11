@@ -68,27 +68,30 @@ function Layout({ children }: LayoutProps): JSX.Element {
   });
 
   return (
-    <NoSSR>
-      <div className={styles.wrapper} style={{ minHeight: height }}>
-        <div className={styles.headerWrapper}>
-          <Header />
+    <>
+      <h1 className={styles.heading1}>kk-web</h1>
+      <NoSSR>
+        <div className={styles.wrapper} style={{ minHeight: height }}>
+          <div className={styles.headerWrapper}>
+            <Header />
+          </div>
+          {children}
+          <div className={styles.footerWrapper}>
+            <Footer />
+          </div>
         </div>
-        {children}
-        <div className={styles.footerWrapper}>
-          <Footer />
-        </div>
-      </div>
-      <nav className={`${styles.nav} ${montserrat.className}`}>
-        <ul className={styles.list}>{items}</ul>
-      </nav>
-      {isShowStudyGroupLink ? (
-        <div className={styles.studyGroupLinkWrapper}>
-          <Link className={styles.studyGroupAnchor} href="/lesson">
-            <FaReact className={styles.icon} />
-          </Link>
-        </div>
-      ) : null}
-    </NoSSR>
+        <nav className={`${styles.nav} ${montserrat.className}`}>
+          <ul className={styles.list}>{items}</ul>
+        </nav>
+        {isShowStudyGroupLink ? (
+          <div className={styles.studyGroupLinkWrapper}>
+            <Link className={styles.studyGroupAnchor} href="/lesson">
+              <FaReact className={styles.icon} />
+            </Link>
+          </div>
+        ) : null}
+      </NoSSR>
+    </>
   );
 }
 

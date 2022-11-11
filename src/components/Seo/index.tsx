@@ -1,23 +1,33 @@
 "use client";
 import { NextSeo, NextSeoProps } from "next-seo";
+import { OpenGraph } from "next-seo/lib/types";
 import { usePathname } from "next/navigation";
+import { useMemo } from "react";
 
-export type SeoProps = Pick<NextSeoProps, "description" | "title">;
+export type SeoProps = Pick<NextSeoProps, "description" | "title"> &
+  Pick<OpenGraph, "type">;
 
-function Seo({ description, title }: SeoProps): JSX.Element {
+function Seo({
+  description: propDescription,
+  title,
+  type,
+}: SeoProps): JSX.Element {
+  const description = useMemo(
+    () =>
+      propDescription
+        ? propDescription.substring(0, 150)
+        : "Freelance front end developer and video creator piro's website",
+    [propDescription]
+  );
   const pathname = usePathname();
 
   return (
     <NextSeo
       canonical={`https://kk-web.link${pathname}`}
-      description={
-        description ||
-        "Freelance front end developer and video creator piro's website"
-      }
+      description={description}
       openGraph={{
-        description:
-          description ||
-          "Freelance front end developer and video creator piro's website",
+        description,
+        type,
         images: [
           {
             alt: "kk-web",

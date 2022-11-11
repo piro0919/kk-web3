@@ -23,7 +23,6 @@ function Top(): JSX.Element {
             <div className={`${styles.title} ${mPlus1Code.className}`}>
               ケーケーウェブ
             </div>
-            <h1 className={styles.heading1}>kk-web</h1>
           </div>
         </div>
         <div className={styles.tsumugiWrapper}>

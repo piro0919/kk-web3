@@ -1,3 +1,10 @@
+.heading1 {
+  height: 0;
+  opacity: 0;
+  position: absolute;
+  width: 0;
+}
+
 .wrapper {
   display: grid;
   position: relative;
