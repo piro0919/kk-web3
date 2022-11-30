@@ -92,8 +92,8 @@ function LessonTop(): JSX.Element {
             </dd>
           </div>
           <div className={styles.item}>
-            <dt className={styles.term}>2022 年 10 月時点の受講者数</dt>
-            <dd className={styles.description}>3 人</dd>
+            <dt className={styles.term}>2022 年 12 月時点の受講者数</dt>
+            <dd className={styles.description}>5 人</dd>
           </div>
           <div className={styles.item}>
             <dt className={styles.term}>受講料</dt>
