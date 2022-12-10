@@ -96,6 +96,44 @@ function LessonTop(): JSX.Element {
             <dd className={styles.description}>5 人</dd>
           </div>
           <div className={styles.item}>
+            <dt className={styles.term}>サンプルコード</dt>
+            <dd className={styles.description}>
+              とくにアクティブに勉強されている方のコードです。
+              <ul>
+                <li className={styles.item2}>
+                  <a
+                    className={styles.anchor}
+                    href="https://github.com/ShSato4JPN/world-of-zono"
+                    rel="noreferrer"
+                    target="_blank"
+                  >
+                    S さん
+                  </a>
+                </li>
+                <li className={styles.item2}>
+                  <a
+                    className={styles.anchor}
+                    href="https://github.com/yanachuwan9sm/own-fm"
+                    rel="noreferrer"
+                    target="_blank"
+                  >
+                    Y さん
+                  </a>
+                </li>
+                <li className={styles.item2}>
+                  <a
+                    className={styles.anchor}
+                    href="https://github.com/imachi/my-blog"
+                    rel="noreferrer"
+                    target="_blank"
+                  >
+                    I さん
+                  </a>
+                </li>
+              </ul>
+            </dd>
+          </div>
+          <div className={styles.item}>
             <dt className={styles.term}>受講料</dt>
             <dd className={styles.description}>無料</dd>
           </div>
