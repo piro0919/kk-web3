@@ -52,7 +52,7 @@
     "@commitlint/cli": "17.3.0",
     "@commitlint/config-conventional": "17.3.0",
     "@types/logrocket-react": "3.0.0",
-    "@types/node": "18.11.16",
+    "@types/node": "18.11.17",
     "@types/nodemailer": "6.4.7",
     "@types/react": "18.0.26",
     "@types/react-autosuggest": "10.1.5",
